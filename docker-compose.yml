@@ -1,0 +1,19 @@
+services:
+  db:
+    image: mysql:8.1
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: root
+    volumes:
+      - ./tmp/db:/var/lib/mysql
+
+  bot:
+    build: .
+    tty: true
+    image: rails_ruby3.1.6
+    volumes:
+      - ./bot:/app
+    ports:
+      - "5050:5000"
+    depends_on:
+      - db
