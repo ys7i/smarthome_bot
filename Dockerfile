@@ -4,7 +4,7 @@ RUN apt-get update -qq
 
 ENV EDITOR="vim"
 
-RUN apt-get -y install vim
+RUN apt-get -y install vim cron
 
 RUN gem install rails -v 7.1.3.2
 

@@ -12,6 +12,14 @@ module SwitchBot
       execute_command(GetDevicesCommand)
     end
 
+    def set_color(device_id, rgb)
+      execute_command(SetColorCommand, device_id, rgb)
+    end
+
+    def turn_off(device_id)
+      execute_command(TurnCommand, device_id, false)
+    end
+
     private
 
     def build_http_client
@@ -20,9 +28,9 @@ module SwitchBot
       end
     end
 
-    def execute_command(command_class)
+    def execute_command(command_class, *args)
       command = command_class.new(@connection)
-      command.execute
+      command.execute(*args)
     end
   end
 end
